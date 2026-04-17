@@ -32,16 +32,19 @@ func main() {
 	if err := cmds.Register("login", commands.HandlerLogin); err != nil {
 		log.Fatalln(err)
 	}
+	if err := cmds.Register("reset", commands.HandlerReset); err != nil {
+		log.Fatalln(err)
+	}
 
 	args := os.Args
 
-	if len(args) < 3 {
-		log.Fatalln("error running program. 2 args are required")
+	if len(args) < 2 {
+		log.Fatalln("error running program. command is required")
 	}
 
 	cmd := commands.Command{
 		Name: args[1],
-		Args: []string{args[2]},
+		Args: args[2:],
 	}
 
 	if err := cmds.Run(&state, cmd); err != nil {
