@@ -35,6 +35,9 @@ func main() {
 	if err := cmds.Register("reset", commands.HandlerReset); err != nil {
 		log.Fatalln(err)
 	}
+	if err := cmds.Register("users", commands.HandlerUsers); err != nil {
+		log.Fatalln(err)
+	}
 
 	args := os.Args
 
